@@ -1,7 +1,7 @@
 {{ define "style" }}
 header.hero{padding:96px 0 12px;border-bottom:1px solid var(--rule)}
-.brand{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--accent);margin:0 0 26px}
+.brand{margin:0 0 30px;color:var(--ink)}
+.brand svg{display:block;width:152px;height:auto}
 h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;letter-spacing:-.035em;max-width:15ch}
 .tagline{font-size:clamp(1.1rem,2.3vw,1.45rem);color:var(--muted);margin:20px 0 0;max-width:42ch}
 .thesis{padding:52px 0 8px}
@@ -36,7 +36,13 @@ section.group{padding:56px 0 0}
 
 {{ define "main" }}
 <header class="hero"><div class="wrap">
-  <p class="brand">aldev.tools</p>
+  <p class="brand"><svg viewBox="0 0 38 16" role="img" aria-label="aldev.tools">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 4 L5.5 8 L2 12"/><path d="M8.5 12.5 L12.5 3.5 L16.5 12.5"/>
+      <path d="M9.9 9.6 H15.1"/><path d="M20 3.5 V12.5 H25.5"/>
+    </g>
+    <path d="M29 12.5 H35.5" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/>
+  </svg></p>
   <h1>Better tools for Business Central developers.</h1>
   <p class="tagline">Open source, built by people who use them every day.</p>
   {{ $documented := slice }}
