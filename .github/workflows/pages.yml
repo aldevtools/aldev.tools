@@ -29,6 +29,16 @@ jobs:
           sudo dpkg -i hugo.deb
       - uses: actions/configure-pages@v5
         id: pages
+      - uses: actions/setup-go@v5
+        with: { go-version: 'stable' }
+      - name: Update mounted documentation to each repository's main
+        # `hugo mod get <repo>@main` resolves to a PSEUDO-VERSION pinned at the
+        # commit main pointed at when it ran -- it is not a floating reference.
+        # Without this step the site would keep serving the documentation of
+        # whichever commit was current when go.mod was last written, and a doc fix
+        # upstream would never appear. Running it on every deploy is what makes
+        # "the site follows main" actually true.
+        run: hugo mod get -u ./...
       - name: Build
         run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
       - uses: actions/upload-pages-artifact@v4

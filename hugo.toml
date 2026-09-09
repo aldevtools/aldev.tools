@@ -17,36 +17,26 @@ enableRobotsTXT = true
 
 # --- Documentation mounted from the tool repositories -------------------------
 #
-# docs/ in the runner is a MIXED folder by design: .claude/rules/loud-failures.md
-# pushes derivation prose out of code comments and into docs/, so most files there
-# are maintainer notes ("Derivation behind AlRunner/Patches/...") rather than
-# documentation anyone outside the project should read.
+# Each repository publishes a docs/manual/ written for readers. docs/ itself is a
+# maintainer surface -- loud-failures.md pushes derivation prose out of code
+# comments and into it -- so only manual/ is mounted, and the whole directory is
+# taken rather than an allowlist: everything in it is public by construction.
 #
-# So this is an explicit allowlist, never the whole directory. A new file in the
-# runner's docs/ does NOT appear here until someone adds it below, which is the
-# safe direction: the failure mode is a missing page, not an internal note
-# published by accident.
+# Ordering and titles come from each page's own front matter, so the source
+# repository decides how its documentation reads and this site does not carry a
+# second copy of that decision.
+#
+# This tracks main rather than the newest tag. Modules default to the newest TAG,
+# which would be right for reference tied to a specific build and is wrong for a
+# manual: it would mean the section stays empty until a release contains it, and a
+# typo fix waiting on a release cycle. If version-pinned documentation is wanted
+# later, Hugo can mount several versions side by side.
+#
+# Preview an unreleased branch without editing this file:
+#   HUGO_MODULE_REPLACEMENTS="github.com/StefanMaron/BusinessCentral.AL.Runner -> /path/to/checkout" hugo server
 [module]
   [[module.imports]]
     path = "github.com/StefanMaron/BusinessCentral.AL.Runner"
     [[module.imports.mounts]]
-      source = "docs"
+      source = "docs/manual"
       target = "content/al-runner"
-      includeFiles = [
-        # Using the runner: what it does, what it refuses, how to drive it
-        "limitations.md",
-        "scope.md",
-        "server-mode.md",
-        "dap-mode.md",
-        "cli-output-paths.md",
-        "provisioning-tiers.md",
-        "v1-to-v2-migration.md",
-        "recursion-depth.md",
-        "partial-company-initialization.md",
-        "virtual-tables-allobj.md",
-        "testpage-write-gate.md",
-        # Contributing
-        "expectations.md",
-        "upstream-corpus-workflow.md",
-        "service-tier-reuse.md",
-      ]

@@ -1,15 +1,13 @@
 {{- $cur := .RelPermalink -}}
+{{- $section := site.GetPage "/al-runner" -}}
 <nav class="docnav" aria-label="Documentation">
   <a class="home" href="/">&larr; aldev.tools</a>
-  {{- range hugo.Data.docnav }}
-    <p class="navsec">{{ .section }}</p>
-    <ul>
-    {{- range .pages }}
-      {{- $title := .title -}}
-      {{- with site.GetPage (printf "/al-runner/%s" .slug) }}
-      <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $cur }} aria-current="page"{{ end }}>{{ $title }}</a></li>
-      {{- end }}
+  {{- with $section }}
+  <p class="navsec">{{ .Title }}</p>
+  <ul>
+    {{- range .Pages.ByWeight }}
+    <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $cur }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
     {{- end }}
-    </ul>
+  </ul>
   {{- end }}
 </nav>
