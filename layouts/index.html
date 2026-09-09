@@ -16,11 +16,19 @@ section.group{padding:56px 0 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(276px,1fr));gap:14px}
 .card{display:block;background:var(--panel);border:1px solid var(--rule);border-radius:10px;
   padding:20px 21px;color:inherit;transition:border-color .15s ease,transform .15s ease}
-.card:hover{border-color:var(--accent);text-decoration:none;transform:translateY(-2px)}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .card h3{font-size:1.06rem;font-weight:700;letter-spacing:-.012em;margin:0 0 7px}
+.card h3 a{color:inherit}
+.card h3 a:hover{color:var(--accent-ink);text-decoration:none}
 .card p{margin:0;color:var(--muted);font-size:.93rem;line-height:1.55}
-.card .slug{display:block;font-family:var(--mono);font-size:.72rem;color:var(--accent);
-  margin-top:13px;overflow-wrap:anywhere}
+.card .links{display:flex;gap:16px;margin-top:14px;font-family:var(--mono);font-size:.73rem}
+.card .links a{color:var(--muted)}
+.card .links a.docs{color:var(--accent)}
+.card .links a:hover{text-decoration:underline}
+.topnav{display:flex;gap:18px;margin-top:26px}
+.topnav a{font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;color:var(--accent);
+  border:1px solid var(--rule);border-radius:20px;padding:7px 16px}
+.topnav a:hover{border-color:var(--accent);text-decoration:none}
 .people{padding:76px 0 0}
 .people h2{font-size:1.5rem;font-weight:700;margin-bottom:14px}
 .people p{color:var(--muted);max-width:58ch;margin:0}
@@ -31,6 +39,13 @@ section.group{padding:56px 0 0}
   <p class="brand">aldev.tools</p>
   <h1>Better tools for Business Central developers.</h1>
   <p class="tagline">Open source, built by people who use them every day.</p>
+  {{ $documented := slice }}
+  {{ range hugo.Data.tools }}{{ range .items }}{{ with .docs }}{{ $documented = $documented | append . }}{{ end }}{{ end }}{{ end }}
+  {{ with $documented }}
+  <nav class="topnav" aria-label="Documentation">
+    {{ range . }}<a href="/{{ . }}/">{{ (site.GetPage (printf "/%s" .)).Title }} docs</a>{{ end }}
+  </nav>
+  {{ end }}
 </div></header>
 
 <div class="wrap">
@@ -44,11 +59,14 @@ section.group{padding:56px 0 0}
     </div>
     <div class="grid">
       {{ range .items }}
-      <a class="card" href="https://github.com/{{ .repo }}">
-        <h3>{{ .name }}</h3>
+      <div class="card">
+        <h3><a href="{{ if .docs }}/{{ .docs }}/{{ else }}https://github.com/{{ .repo }}{{ end }}">{{ .name }}</a></h3>
         <p>{{ .text }}</p>
-        <span class="slug">{{ .repo }}</span>
-      </a>
+        <p class="links">
+          {{ with .docs }}<a class="docs" href="/{{ . }}/">Documentation</a>{{ end }}
+          <a class="src" href="https://github.com/{{ .repo }}">Source</a>
+        </p>
+      </div>
       {{ end }}
     </div>
   </section>

@@ -14,6 +14,10 @@
   items:
     - name: AL Runner
       repo: StefanMaron/BusinessCentral.AL.Runner
+      # `docs` is the content section mounted from this repository. Set it only
+      # once the mount exists in hugo.toml -- the card renders a Documentation
+      # link when it is present and stays source-only when it is not.
+      docs: al-runner
       text: Run Business Central AL unit tests in milliseconds. No service tier, no Docker, no SQL Server, no license.
     - name: AL Language Tests
       repo: StefanMaron/BusinessCentral.AL.Language.Tests
