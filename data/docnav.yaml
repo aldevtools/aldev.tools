@@ -1,0 +1,24 @@
+# Ordering and display titles for mounted documents. The source files carry no
+# front matter -- they are plain markdown in a code repository -- so the title
+# and the order live here rather than being pushed upstream into files whose
+# job is to sit next to the code.
+- section: Using the runner
+  pages:
+    - {slug: scope,                          title: "What the runner does"}
+    - {slug: limitations,                    title: "Limitations"}
+    - {slug: v1-to-v2-migration,             title: "Migrating from v1"}
+    - {slug: provisioning-tiers,             title: "Provisioning a BC artifact"}
+    - {slug: cli-output-paths,               title: "Output files"}
+    - {slug: server-mode,                    title: "Server mode"}
+    - {slug: dap-mode,                       title: "Debugging (DAP)"}
+- section: Behaviour to know about
+  pages:
+    - {slug: testpage-write-gate,            title: "When a TestPage writes a row"}
+    - {slug: recursion-depth,                title: "Recursion depth"}
+    - {slug: partial-company-initialization, title: "Partial company initialization"}
+    - {slug: virtual-tables-allobj,          title: "AllObj virtual tables"}
+- section: Contributing
+  pages:
+    - {slug: expectations,                   title: "Test expectations"}
+    - {slug: upstream-corpus-workflow,       title: "The upstream corpus"}
+    - {slug: service-tier-reuse,             title: "Reusing the service tier"}

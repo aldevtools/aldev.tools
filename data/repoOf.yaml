@@ -1,0 +1,3 @@
+# content section -> source repository, used by the link render hook to turn a
+# repo-relative link that is not a published page into a real GitHub link.
+al-runner: StefanMaron/BusinessCentral.AL.Runner

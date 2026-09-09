@@ -14,3 +14,39 @@ enableRobotsTXT = true
 
 [markup.goldmark.renderer]
   unsafe = true
+
+# --- Documentation mounted from the tool repositories -------------------------
+#
+# docs/ in the runner is a MIXED folder by design: .claude/rules/loud-failures.md
+# pushes derivation prose out of code comments and into docs/, so most files there
+# are maintainer notes ("Derivation behind AlRunner/Patches/...") rather than
+# documentation anyone outside the project should read.
+#
+# So this is an explicit allowlist, never the whole directory. A new file in the
+# runner's docs/ does NOT appear here until someone adds it below, which is the
+# safe direction: the failure mode is a missing page, not an internal note
+# published by accident.
+[module]
+  [[module.imports]]
+    path = "github.com/StefanMaron/BusinessCentral.AL.Runner"
+    [[module.imports.mounts]]
+      source = "docs"
+      target = "content/al-runner"
+      includeFiles = [
+        # Using the runner: what it does, what it refuses, how to drive it
+        "limitations.md",
+        "scope.md",
+        "server-mode.md",
+        "dap-mode.md",
+        "cli-output-paths.md",
+        "provisioning-tiers.md",
+        "v1-to-v2-migration.md",
+        "recursion-depth.md",
+        "partial-company-initialization.md",
+        "virtual-tables-allobj.md",
+        "testpage-write-gate.md",
+        # Contributing
+        "expectations.md",
+        "upstream-corpus-workflow.md",
+        "service-tier-reuse.md",
+      ]

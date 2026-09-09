@@ -1,0 +1,17 @@
+{{- $d := .Destination -}}
+{{- $repo := .Page.Params.sourceRepo | default (index (site.Data.repoOf) .Page.Section) -}}
+{{- if or (strings.HasPrefix $d "http") (strings.HasPrefix $d "#") (strings.HasPrefix $d "mailto:") -}}
+  <a href="{{ $d }}"{{ if strings.HasPrefix $d "http" }} rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- else -}}
+  {{- $clean := strings.TrimPrefix "./" $d -}}
+  {{- $base := path.Base $clean -}}
+  {{- $slug := strings.TrimSuffix ".md" $base -}}
+  {{- $target := printf "/%s/%s/" .Page.Section $slug -}}
+  {{- if and (strings.HasSuffix $clean ".md") (not (strings.Contains $clean "../")) (site.GetPage $target) -}}
+    <a href="{{ $target }}">{{ .Text | safeHTML }}</a>
+  {{- else -}}
+    {{/* Not a page on this site: point at the file in the repository it came from. */}}
+    <a href="https://github.com/{{ $repo }}/blob/main/{{ strings.TrimPrefix "../" $clean }}"
+       rel="noopener" class="src">{{ .Text | safeHTML }}</a>
+  {{- end -}}
+{{- end -}}
