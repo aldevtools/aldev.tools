@@ -1,0 +1,37 @@
+;; BIND zone file for aldev.tools -> GitHub Pages (aldevtools/aldev.tools)
+;;
+;; Import in Cloudflare:  DNS > Records > Import and Export > Import
+;;
+;; LEAVE "Proxy imported DNS records" UNCHECKED.
+;; GitHub has to reach the domain directly to issue the TLS certificate. If the
+;; records are proxied (orange cloud) before that happens, certificate issuance
+;; fails and the site serves an HTTPS error. Once https://aldev.tools loads with
+;; a valid certificate you can turn the proxy on afterwards if you want it.
+;;
+;; TTL 1 means "Automatic" in Cloudflare.
+;;
+;; Addresses verified 2026-09-09 by resolving aldevtools.github.io, not quoted
+;; from documentation. If GitHub ever changes them, an ALIAS/CNAME at the apex
+;; (see the bottom of this file) follows automatically and these do not.
+
+;; --- apex: GitHub Pages IPv4 ---
+aldev.tools.	1	IN	A	185.199.108.153
+aldev.tools.	1	IN	A	185.199.109.153
+aldev.tools.	1	IN	A	185.199.110.153
+aldev.tools.	1	IN	A	185.199.111.153
+
+;; --- apex: GitHub Pages IPv6 ---
+aldev.tools.	1	IN	AAAA	2606:50c0:8000::153
+aldev.tools.	1	IN	AAAA	2606:50c0:8001::153
+aldev.tools.	1	IN	AAAA	2606:50c0:8002::153
+aldev.tools.	1	IN	AAAA	2606:50c0:8003::153
+
+;; --- www -> apex ---
+www.aldev.tools.	1	IN	CNAME	aldevtools.github.io.
+
+;; --- alternative to the eight records above ---
+;; Cloudflare flattens CNAMEs at the apex, so this single record works too and
+;; keeps following GitHub if their addresses change. Use EITHER this line OR the
+;; A/AAAA records above, never both:
+;;
+;; aldev.tools.	1	IN	CNAME	aldevtools.github.io.

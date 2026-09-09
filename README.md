@@ -30,3 +30,7 @@ No template edit is needed to add, remove or regroup tools.
 
 `.github/workflows/pages.yml` builds on every push to `main` and publishes to
 GitHub Pages. `static/CNAME` holds the custom domain.
+
+DNS lives in `dns/aldev.tools.zone`, a BIND zone file importable directly into
+Cloudflare. Read the comments at the top before importing: the records must not
+be proxied until GitHub has issued the TLS certificate.
