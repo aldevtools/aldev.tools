@@ -1,0 +1,16 @@
+baseURL = 'https://aldev.tools/'
+locale = 'en-us'
+title = 'aldev.tools'
+enableRobotsTXT = true
+
+[params]
+  description = 'Open source tooling for Business Central and AL developers.'
+  # Set to false until Torben confirms; the People section renders only when true.
+  showPeople = true
+
+# The site has no taxonomies; without this Hugo emits empty tag/category pages
+# and warns about a missing taxonomy template.
+[taxonomies]
+
+[markup.goldmark.renderer]
+  unsafe = true
