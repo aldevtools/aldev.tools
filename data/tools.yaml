@@ -29,6 +29,14 @@
       repo: StefanMaron/BusinessCentral.DbReader
       text: Read Business Central data from a SQL Server backup or a cloud export, without SQL Server.
 
+- group: Build and release
+  blurb: Getting an AL project from source to a signed app.
+  owner: stefan
+  items:
+    - name: AL-Go fork
+      repo: StefanMaron/AL-Go
+      text: A fork of Microsoft's AL-Go for GitHub, kept mergeable with upstream, that adds a Linux fast lane — pull request builds compile from source and run AL unit tests on Ubuntu, no Windows container.
+
 - group: Language and analysis
   blurb: Reading AL as a language rather than as text.
   owner: torben
