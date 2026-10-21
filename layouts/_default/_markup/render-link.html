@@ -3,15 +3,21 @@
 {{- if or (strings.HasPrefix $d "http") (strings.HasPrefix $d "#") (strings.HasPrefix $d "mailto:") -}}
   <a href="{{ $d }}"{{ if strings.HasPrefix $d "http" }} rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
 {{- else -}}
-  {{- $clean := strings.TrimPrefix "./" $d -}}
+  {{/* Split off a #fragment so `page.md#section` still resolves to a page. */}}
+  {{- $parts := split $d "#" -}}
+  {{- $file := index $parts 0 -}}
+  {{- $frag := "" -}}
+  {{- if gt (len $parts) 1 }}{{ $frag = printf "#%s" (index $parts 1) }}{{ end -}}
+  {{- $clean := strings.TrimPrefix "./" $file -}}
   {{- $base := path.Base $clean -}}
   {{- $slug := strings.TrimSuffix ".md" $base -}}
   {{- $target := printf "/%s/%s/" .Page.Section $slug -}}
   {{- if and (strings.HasSuffix $clean ".md") (not (strings.Contains $clean "../")) (site.GetPage $target) -}}
-    <a href="{{ $target }}">{{ .Text | safeHTML }}</a>
+    <a href="{{ $target }}{{ $frag }}">{{ .Text | safeHTML }}</a>
   {{- else -}}
-    {{/* Not a page on this site: point at the file in the repository it came from. */}}
-    <a href="https://github.com/{{ $repo }}/blob/main/{{ strings.TrimPrefix "../" $clean }}"
+    {{/* Not a page on this site: point at the file in the repository it came from. The manual
+         lives in docs/manual/, so a link that climbs out of it resolves from there. */}}
+    <a href="https://github.com/{{ $repo }}/blob/main/{{ path.Join "docs/manual" $clean }}{{ $frag }}"
        rel="noopener" class="src">{{ .Text | safeHTML }}</a>
   {{- end -}}
 {{- end -}}

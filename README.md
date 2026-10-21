@@ -19,9 +19,9 @@ Everything on the page comes from `data/tools.yaml`. `repo` is the full
 one-line change:
 
 ```yaml
-- name: AL Runner
-  repo: StefanMaron/BusinessCentral.AL.Runner   # -> aldevtools/BusinessCentral.AL.Runner
-  text: Run Business Central AL unit tests in milliseconds.
+- name: DbReader
+  repo: StefanMaron/BusinessCentral.DbReader   # -> aldevtools/BusinessCentral.DbReader
+  text: Read Business Central data from a SQL Server backup.
 ```
 
 No template edit is needed to add, remove or regroup tools.

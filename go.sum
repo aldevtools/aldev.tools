@@ -1,4 +1,2 @@
-github.com/StefanMaron/BusinessCentral.AL.Runner v2.11.0+incompatible h1:kkQRLGM1DCgXAoIb4gqbmhoc6PP0Z4Lk3dOJHpsKY5A=
-github.com/StefanMaron/BusinessCentral.AL.Runner v2.11.0+incompatible/go.mod h1:+qV2uq2L7ddmd3GHOn7+C1EN171G3ld/M8LtaE/dlGI=
-github.com/StefanMaron/BusinessCentral.AL.Runner v2.11.1-0.20260909062425-43fb93d7cdda+incompatible h1:YTvmfe5O/0rlFoZ5bMs1q71Yo2g5QxTVA6YrCH8hwCA=
-github.com/StefanMaron/BusinessCentral.AL.Runner v2.11.1-0.20260909062425-43fb93d7cdda+incompatible/go.mod h1:+qV2uq2L7ddmd3GHOn7+C1EN171G3ld/M8LtaE/dlGI=
+github.com/aldevtools/BusinessCentral.AL.Runner v3.0.0-alpha.3.0.20261021144856-00115523981c+incompatible h1:kY7OmSoH23p+wfKAEiJtAPDpW9dA0Fqd/jNoe6hhry0=
+github.com/aldevtools/BusinessCentral.AL.Runner v3.0.0-alpha.3.0.20261021144856-00115523981c+incompatible/go.mod h1:43DGUZnDBpVnpGANTmNerHejXoF09dTFDMX72drSXlI=

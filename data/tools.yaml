@@ -3,7 +3,8 @@
 # `repo` is the FULL owner/name path and is the single thing to change when a
 # tool migrates into the organization: StefanMaron/X becomes aldevtools/X, one
 # line, no template edit. Until then the link points where the code actually is,
-# so every card on the page works today.
+# so every card on the page works today. Runner, Language Tests, BC on Linux and
+# the AL-Go fork have moved; the rest have not.
 #
 # `owner` is bookkeeping and is never rendered. It marks which groups are
 # contingent on Torben joining -- delete a group and the page still renders.
@@ -13,17 +14,17 @@
   owner: stefan
   items:
     - name: AL Runner
-      repo: StefanMaron/BusinessCentral.AL.Runner
+      repo: aldevtools/BusinessCentral.AL.Runner
       # `docs` is the content section mounted from this repository. Set it only
       # once the mount exists in hugo.toml -- the card renders a Documentation
       # link when it is present and stays source-only when it is not.
       docs: al-runner
-      text: Run Business Central AL unit tests in milliseconds. No service tier, no Docker, no SQL Server, no license.
+      text: Run Business Central AL tests without a service tier, Docker, SQL Server or license. Version 3 is a single Rust binary that runs Microsoft's own AL code, and says "not run" instead of guessing. In alpha.
     - name: AL Language Tests
-      repo: StefanMaron/BusinessCentral.AL.Language.Tests
+      repo: aldevtools/BusinessCentral.AL.Language.Tests
       text: An executable specification of AL, checked against a real Business Central service tier on every push.
     - name: BC on Linux
-      repo: StefanMaron/MsDyn365Bc.On.Linux
+      repo: aldevtools/MsDyn365Bc.On.Linux
       text: Business Central running on Linux with Docker Compose.
     - name: DbReader
       repo: StefanMaron/BusinessCentral.DbReader
@@ -34,7 +35,7 @@
   owner: stefan
   items:
     - name: AL-Go fork
-      repo: StefanMaron/AL-Go
+      repo: aldevtools/AL-Go
       text: A fork of Microsoft's AL-Go for GitHub, kept mergeable with upstream, that adds a Linux fast lane — pull request builds compile from source and run AL unit tests on Ubuntu, no Windows container.
 
 - group: Language and analysis
