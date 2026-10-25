@@ -38,7 +38,12 @@ jobs:
         # whichever commit was current when go.mod was last written, and a doc fix
         # upstream would never appear. Running it on every deploy is what makes
         # "the site follows main" actually true.
-        run: hugo mod get -u ./...
+        # `-u` would move each module to its newest release TAG, not to main, so every
+        # module listed in hugo.toml is fetched at @main by name.
+        run: |
+          for m in $(grep -oE 'path = "github.com/[^"]+"' hugo.toml | cut -d'"' -f2); do
+            hugo mod get "$m@main"
+          done
       - name: Build
         run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
       - uses: actions/upload-pages-artifact@v4
